@@ -1,12 +1,14 @@
 package ite.kubak.model.index;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Table {
     private String id;
     private Attr attributes;
-    private Link link;
+    @JsonProperty("links")
+    private Link links;
 
     public Attr getAttributes() {
         return attributes;
@@ -25,10 +27,11 @@ public class Table {
     }
 
     public Link getLink() {
-        return link;
+        return links;
     }
 
-    public void setLink(Link link) {
-        this.link = link;
+    public void setLink(Link links) {
+        this.links = links;
     }
+
 }

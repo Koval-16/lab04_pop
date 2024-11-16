@@ -7,7 +7,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Year {
     private int year;
-    List<Table> tables;
+    private List<Table> tables;
 
     public int getYear() {
         return year;

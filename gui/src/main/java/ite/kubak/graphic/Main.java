@@ -1,4 +1,4 @@
-package ite.kubak;
+package ite.kubak.graphic;
 
 import javax.swing.*;
 
@@ -9,6 +9,6 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Main();
+        Frame frame = new Frame();
     }
 }

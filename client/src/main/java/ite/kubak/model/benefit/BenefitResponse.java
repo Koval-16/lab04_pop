@@ -8,9 +8,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BenefitResponse {
     private List<Benefit> data;
+    private Page links;
 
     public BenefitResponse(){
-
     }
 
     public List<Benefit> getData(){
@@ -20,4 +20,13 @@ public class BenefitResponse {
     public void setData(List<Benefit> data) {
         this.data = data;
     }
+
+    public Page getLinks() {
+        return links;
+    }
+
+    public void setPage(Page links) {
+        this.links = links;
+    }
+
 }
