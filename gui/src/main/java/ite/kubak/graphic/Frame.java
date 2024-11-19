@@ -7,6 +7,7 @@ import ite.kubak.model.Hospitality.Element;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Frame {
     private JScrollPane scroll;
     private JList<Integer> list1;
     private JList<String> list2;
+    private JPanel chart;
     private DefaultListModel<String> listModel;
     private DefaultListModel<Integer> listModel1;
     private DefaultListModel<String> listModel2;
@@ -72,6 +74,8 @@ public class Frame {
                 String table = list2.getSelectedValue();
                 if(!e.getValueIsAdjusting() && listener!=null && year!=null && table!=null){
                     List<Element> elements = listener.get_chart(year,table);
+                    System.out.println("chuj");
+                    updateChart(elements);
                 }
             }
         });
@@ -105,7 +109,14 @@ public class Frame {
         for(String table : tables) listModel2.addElement(table);
     }
 
-
+    public void updateChart(List<Element> elements){
+        Chart chart_panel = new Chart(elements);
+        chart.removeAll();
+        chart.setLayout(new BorderLayout());
+        chart.add(chart_panel);
+        chart.revalidate();
+        chart.repaint();
+    }
 
 
     public static void main(String[] args){
