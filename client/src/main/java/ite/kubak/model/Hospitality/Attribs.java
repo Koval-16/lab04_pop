@@ -6,15 +6,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Info {
+public class Attribs {
     @JsonProperty("data")
-    private AData data;
+    private List<Element> elements;
 
-    public void setData(AData data) {
-        this.data = data;
+    public void setElements(List<Element> elements) {
+        this.elements = elements;
     }
 
-    public AData getData() {
-        return data;
+    public List<Element> getElements() {
+        return elements;
     }
 }

@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Element {
-    @JsonAlias({"type-of-discharge-code,age-group-code,gender-code,type-of-admission-code,procedure-code,disease-code"})
+    @JsonAlias({"type-of-discharge-code","age-group-code","gender-code","type-of-admission-code","procedure-code","disease-code"})
     private int code;
-    @JsonAlias({"type-of-discharge-name,age-group-name,gender-name,type-of-admission-name,procedure-name,disease-name"})
+    @JsonAlias({"type-of-discharge-name","age-group-name","gender-name","type-of-admission-name","procedure-name","disease-name"})
     private String name;
     @JsonProperty("number-of-hospitalizations")
     private int hosp_number;

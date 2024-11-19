@@ -45,7 +45,7 @@ public class CommImpl implements CommInt{
         HttpRequest request = http.create_request(q);
         HttpResponse<String> response = http.get_response(request);
         IndexOfTables index = parser.parse(response,IndexOfTables.class);
-        System.out.println(index.getData().getAttributes().getYears().get(0).getTables().get(0).getLink().getRelated());
+        System.out.println(index.getData().getAttributes().getYears().get(0).getTables().get(0).getLinks().getRelated());
         return index;
     }
 

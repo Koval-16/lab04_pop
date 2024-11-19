@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Table {
     private String id;
+    private String type;
     private Attr attributes;
     @JsonProperty("links")
     private Link links;
@@ -26,7 +27,7 @@ public class Table {
         this.id = id;
     }
 
-    public Link getLink() {
+    public Link getLinks() {
         return links;
     }
 
@@ -34,4 +35,11 @@ public class Table {
         this.links = links;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

@@ -1,7 +1,6 @@
 package ite.kubak.communication;
 
 import ite.kubak.model.Hospitality.Element;
-import ite.kubak.model.Hospitality.Info;
 import ite.kubak.model.index.IndexOfTables;
 import ite.kubak.model.index.Table;
 import ite.kubak.model.index.Year;
@@ -45,6 +44,12 @@ public class Controller implements Listener{
         List<String> tables = new ArrayList<>();
         for(Year yr : years) if(yr.getYear()==year){
             for(int i=0; i<yr.getTables().size(); i++){
+                if(yr.getTables().get(i).getType().equals("hospitalization-by-gender") ||
+                        yr.getTables().get(i).getType().equals("hospitalization-by-admission") ||
+                        yr.getTables().get(i).getType().equals("hospitalization-by-discharge") ||
+                        yr.getTables().get(i).getType().equals("hospitalization-by-age") ||
+                        yr.getTables().get(i).getType().equals("icd-9-procedures") ||
+                        yr.getTables().get(i).getType().equals("icd-10-diseases"))
                 tables.add(yr.getTables().get(i).getAttributes().getHeader());
             }
         }
@@ -60,7 +65,7 @@ public class Controller implements Listener{
                 for(Table tbl : tables) {
                     System.out.println(tbl.getAttributes().getHeader());
                     if(tbl.getAttributes().getHeader().equals(table)){
-                        return comm.get_info(tbl.getLink().getRelated()).getElements();
+                        return comm.get_info(tbl.getLinks().getRelated()).getData().getAttributes().getElements();
                     }
                 }
             }
