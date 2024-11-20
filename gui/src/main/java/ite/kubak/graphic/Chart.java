@@ -43,7 +43,7 @@ public class Chart extends JPanel {
         // Parametry wykresu
         int barWidth = 60;
         int spacing = 50;
-        int maxHeight = 1000;
+        int maxHeight = 300;
         int maxWidth = names.size()*(barWidth+spacing)+100;
 
         // Rysowanie osi
@@ -55,7 +55,8 @@ public class Chart extends JPanel {
 
         // Rysowanie słupków
         for (int i = 0; i < numbers.size(); i++) {
-            int barHeight = (int) ((percentages.get(i) / 300.0) * maxHeight);
+            int barHeight = (int) ((percentages.get(i) / 100.0) * maxHeight);
+            System.out.println("HEIGHT: "+percentages.get(i));
             int x = 60 + i * (barWidth + spacing);
             int y = 350 - barHeight;
             graphics.setColor(Color.BLUE);

@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface Listener {
 
-
-
     List<String> get_benefits(String query);
 
     List<Integer> get_index(String name);

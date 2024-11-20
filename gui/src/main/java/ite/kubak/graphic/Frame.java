@@ -126,8 +126,7 @@ public class Frame {
         chart.repaint();
     }
 
-
-    public static void main(String[] args){
+    public static void run(){
         JFrame frame = new JFrame("Frame");
         Frame myFrame = new Frame();
         frame.setContentPane(myFrame.panel1);

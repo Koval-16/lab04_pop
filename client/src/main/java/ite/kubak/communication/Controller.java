@@ -4,7 +4,6 @@ import ite.kubak.model.Hospitality.Element;
 import ite.kubak.model.index.IndexOfTables;
 import ite.kubak.model.index.Table;
 import ite.kubak.model.index.Year;
-import ite.kubak.temp.Website;
 import ite.kubak.model.benefit.Benefit;
 
 import java.util.ArrayList;
@@ -14,19 +13,20 @@ public class Controller implements Listener{
 
     private final CommImpl comm = new CommImpl();
     private IndexOfTables index;
+    public static final String URL = "https://api.nfz.gov.pl/app-stat-api-jgp/";
 
     public Controller(){}
 
     @Override
     public List<String> get_benefits(String query){
-        List<Benefit> benefits = comm.get_benefits(Website.URL,query);
+        List<Benefit> benefits = comm.get_benefits(URL,query);
         List<String> names = new ArrayList<>();
         for(Benefit benefit : benefits) names.add(benefit.getName());
         return names;
     }
 
     private void ind(String name){
-        index = comm.get_index(Website.URL, name);
+        index = comm.get_index(URL, name);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Controller implements Listener{
                         yr.getTables().get(i).getType().equals("hospitalization-by-admission") ||
                         yr.getTables().get(i).getType().equals("hospitalization-by-discharge") ||
                         yr.getTables().get(i).getType().equals("hospitalization-by-age"))
-                tables.add(yr.getTables().get(i).getAttributes().getHeader());
+                    tables.add(yr.getTables().get(i).getAttributes().getHeader());
             }
         }
         return tables;
