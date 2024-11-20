@@ -22,6 +22,8 @@ public class Frame {
     private JList<Integer> list1;
     private JList<String> list2;
     private JPanel chart;
+    private JScrollPane scroll1;
+    private JScrollPane scroll2;
     private DefaultListModel<String> listModel;
     private DefaultListModel<Integer> listModel1;
     private DefaultListModel<String> listModel2;
@@ -50,8 +52,8 @@ public class Frame {
         list.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(!e.getValueIsAdjusting() && listener!=null){
-                    String name = list.getSelectedValue();
+                String name = list.getSelectedValue();
+                if(!e.getValueIsAdjusting() && listener!=null && name!=null){
                     List<Integer> years = listener.get_index(name);
                     updateList1(years);
                 }
@@ -75,7 +77,7 @@ public class Frame {
                 if(!e.getValueIsAdjusting() && listener!=null && year!=null && table!=null){
                     List<Element> elements = listener.get_chart(year,table);
                     System.out.println("chuj");
-                    updateChart(elements);
+                    updateChart(elements,table,year);
                 }
             }
         });
@@ -92,6 +94,8 @@ public class Frame {
         listModel2.clear();
         listModel1.clear();
         listModel.clear();
+        chart.removeAll();
+        chart.repaint();
         for(String name : names) listModel.addElement(name);
     }
 
@@ -100,17 +104,21 @@ public class Frame {
         list1.clearSelection();
         listModel2.clear();
         listModel1.clear();
+        chart.removeAll();
+        chart.repaint();
         for(Integer year : years) listModel1.addElement(year);
     }
 
     public void updateList2(List<String> tables){
         list2.clearSelection();
         listModel2.clear();
+        chart.removeAll();
+        chart.repaint();
         for(String table : tables) listModel2.addElement(table);
     }
 
-    public void updateChart(List<Element> elements){
-        Chart chart_panel = new Chart(elements);
+    public void updateChart(List<Element> elements, String table, int year){
+        Chart chart_panel = new Chart(elements,table,year);
         chart.removeAll();
         chart.setLayout(new BorderLayout());
         chart.add(chart_panel);

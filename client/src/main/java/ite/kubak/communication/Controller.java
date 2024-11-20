@@ -47,9 +47,7 @@ public class Controller implements Listener{
                 if(yr.getTables().get(i).getType().equals("hospitalization-by-gender") ||
                         yr.getTables().get(i).getType().equals("hospitalization-by-admission") ||
                         yr.getTables().get(i).getType().equals("hospitalization-by-discharge") ||
-                        yr.getTables().get(i).getType().equals("hospitalization-by-age") ||
-                        yr.getTables().get(i).getType().equals("icd-9-procedures") ||
-                        yr.getTables().get(i).getType().equals("icd-10-diseases"))
+                        yr.getTables().get(i).getType().equals("hospitalization-by-age"))
                 tables.add(yr.getTables().get(i).getAttributes().getHeader());
             }
         }
@@ -65,7 +63,17 @@ public class Controller implements Listener{
                 for(Table tbl : tables) {
                     System.out.println(tbl.getAttributes().getHeader());
                     if(tbl.getAttributes().getHeader().equals(table)){
-                        return comm.get_info(tbl.getLinks().getRelated()).getData().getAttributes().getElements();
+                        List<Element> sorted = comm.get_info(tbl.getLinks().getRelated()).getData().getAttributes().getElements();
+                        for(int i=0; i<sorted.size()-1; i++){
+                            for(int j=i+1; j<sorted.size(); j++){
+                                if(sorted.get(i).getCode()>sorted.get(j).getCode()){
+                                    Element temp = sorted.get(i);
+                                    sorted.set(i, sorted.get(j));
+                                    sorted.set(j, temp);
+                                }
+                            }
+                        }
+                        return sorted;
                     }
                 }
             }
