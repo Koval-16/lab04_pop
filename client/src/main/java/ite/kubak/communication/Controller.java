@@ -61,7 +61,6 @@ public class Controller implements Listener{
             if(yr.getYear()==year){
                 List<Table> tables = yr.getTables();
                 for(Table tbl : tables) {
-                    System.out.println(tbl.getAttributes().getHeader());
                     if(tbl.getAttributes().getHeader().equals(table)){
                         List<Element> sorted = comm.get_info(tbl.getLinks().getRelated()).getData().getAttributes().getElements();
                         for(int i=0; i<sorted.size()-1; i++){

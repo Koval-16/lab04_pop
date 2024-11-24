@@ -40,13 +40,11 @@ public class Chart extends JPanel {
         Graphics2D graphics = (Graphics2D) g;
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Parametry wykresu
         int barWidth = 60;
         int spacing = 50;
         int maxHeight = 300;
         int maxWidth = names.size()*(barWidth+spacing)+100;
 
-        // Rysowanie osi
         graphics.drawLine(50, 350, maxWidth, 350); // Oś X
         graphics.drawLine(50, 350, 50, 50);  // Oś Y
 
@@ -56,7 +54,6 @@ public class Chart extends JPanel {
         // Rysowanie słupków
         for (int i = 0; i < numbers.size(); i++) {
             int barHeight = (int) ((percentages.get(i) / 100.0) * maxHeight);
-            System.out.println("HEIGHT: "+percentages.get(i));
             int x = 60 + i * (barWidth + spacing);
             int y = 350 - barHeight;
             graphics.setColor(Color.BLUE);
@@ -76,8 +73,8 @@ public class Chart extends JPanel {
             String percentageText = String.format("%.1f%%", percentages.get(i));
             graphics.drawString(String.valueOf(percentageText), x+barWidth/4, y-5);
 
+            // Podpisy slupkow
             FontMetrics metrics = graphics.getFontMetrics(new Font("Arial", Font.PLAIN, 10));
-            // Podział nazw na linie, jeśli są zbyt długie
             String label = names.get(i);
             int lineHeight = metrics.getHeight();
             int availableWidth = barWidth;

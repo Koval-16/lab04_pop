@@ -32,7 +32,6 @@ public class CommImpl implements CommInt{
             next_page = benefitResponse.getLinks().getNext();
             page++;
         } while (next_page!=null);
-        for(Benefit benefit : all_benefits) System.out.println("Nazwa: "+benefit.getName()+" KOD: "+benefit.getCode());
         return all_benefits;
     }
 
@@ -45,7 +44,6 @@ public class CommImpl implements CommInt{
         HttpRequest request = http.create_request(q);
         HttpResponse<String> response = http.get_response(request);
         IndexOfTables index = parser.parse(response,IndexOfTables.class);
-        System.out.println(index.getData().getAttributes().getYears().get(0).getTables().get(0).getLinks().getRelated());
         return index;
     }
 
@@ -55,7 +53,6 @@ public class CommImpl implements CommInt{
         HttpRequest request = http.create_request(q);
         HttpResponse<String> response = http.get_response(request);
         Info info = parser.parse(response,Info.class);
-        System.out.println("XD");
         return info;
     }
 

@@ -76,7 +76,6 @@ public class Frame {
                 String table = list2.getSelectedValue();
                 if(!e.getValueIsAdjusting() && listener!=null && year!=null && table!=null){
                     List<Element> elements = listener.get_chart(year,table);
-                    System.out.println("chuj");
                     updateChart(elements,table,year);
                 }
             }
